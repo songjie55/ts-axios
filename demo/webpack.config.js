@@ -19,12 +19,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: '/\.ts$/',
+        test: /\.ts$/,
         enforce: 'pre',
         use: 'tslint-loader'
       },
       {
-        test: '/\.tsx$/',
+        test: /\.tsx?$/,
         use: 'ts-loader?transpileOnly'
       }
     ]
