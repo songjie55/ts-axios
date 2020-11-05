@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
+__dirname = __dirname + '/demo'
 module.exports = {
   mode: 'development',
   entry: fs.readdirSync(__dirname).reduce((entries, dir) => {
