@@ -11,9 +11,9 @@ module.exports = {
     return entries
   }, {}),
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '__build__'),
     filename: '[name].js',
-    publicPath: ''
+    publicPath: '/__build__/'
   },
   module: {
     rules: [
