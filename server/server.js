@@ -22,6 +22,14 @@ app.use(express.static(arr.join('/')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extend: true }))
 const router = express.Router()
+router.get('/simple/getUser', (req, res) => {
+  res.json({
+    msg: 'hello world'
+  })
+})
+router.get('/base/testRequest', (req, res) => {
+  res.json(req.query)
+})
 app.use(router)
 const port = process.env.PORT || 8000
 module.exports = app.listen(port, () => {
