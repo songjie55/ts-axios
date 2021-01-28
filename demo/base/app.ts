@@ -1,8 +1,9 @@
-import axios from '../../src'
+import axios, { AxiosError } from '../../src'
 // 测试
 axios({
   method: 'get',
-  url: '/base/testRequest', params: {
+  url: '/base/testRequest',
+  params: {
     name: 'tom'
   }
 })
@@ -39,9 +40,49 @@ axios({
 })
 
 axios({
-  method: 'get',
-  url: '/base/testRequest',
-  params: {
+  method: 'post',
+  headers: {
+    accept: 'animate',
+    'content-type': 'application/json;charset=utf-8'
+  },
+  responseType: 'text',
+  // responseType: 'json',
+  url: '/base/testHeader',
+  data: {
     spacial: '@ %'
   }
+}).then(res => {
+  console.log(res)
 })
+// 测试异常处理
+axios({
+  method: 'get',
+  url: 'errorUrl?name=test'
+}).then(res => {
+  console.log(res)
+}).catch((e: AxiosError) => {
+  console.log(e.message)
+  console.log(e.config)
+  console.log(e.code)
+  console.log(e.request)
+  console.log(e.isAxiosError)
+})
+axios({
+  method: 'post',
+  timeout: 3000,
+  url: '/base/testTimeout'
+}).then(res => {
+  console.log(res)
+}).catch(e => {
+  console.log(e)
+})
+setTimeout(() => {
+  axios({
+    method: 'get',
+    url: '/base/testRequest'
+  }).then(res => {
+    console.log(res)
+  }).catch(e => {
+    console.log(e)
+  })
+}, 6000)

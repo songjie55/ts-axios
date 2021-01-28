@@ -30,6 +30,18 @@ router.get('/simple/getUser', (req, res) => {
 router.get('/base/testRequest', (req, res) => {
   res.json(req.query)
 })
+router.post('/base/testHeader', (req, res) => {
+  res.json(req.body)
+})
+router.post('/base/testError', (req, res) => {
+  res.status(500)
+  res.end()
+})
+router.post('/base/testTimeout', (req, res) => {
+  setTimeout(() => {
+    res.json(req.body)
+  }, 5000)
+})
 app.use(router)
 const port = process.env.PORT || 8000
 module.exports = app.listen(port, () => {
